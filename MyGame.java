@@ -11,14 +11,16 @@ public class MyGame {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        boolean Exception;
-        String Loop;
-        boolean Repeat;
+        boolean Exception; //argument for the do while loop
+        String answer;
+        boolean Repeat; //argument for the do while loop
 
         C4 myGame = new C4();
+        //Do while loop that loop the whole game until Repeat is true.
         do {
             Repeat = false;
             System.out.println(myGame.getName());
+            //Nest do while loop to print the game/collect user's input/catch exception
             do {
                 myGame.printBoard();
 
@@ -28,9 +30,7 @@ public class MyGame {
                 } else if(myGame.getTurn() == 'Y'){
                     System.out.print("> Player Two(Y) turn!\t");
                 }
-                /*while((myGame.isColFull(input.nextInt()))){
-                    System.out.println("Please choose a different column!");
-                }*/
+                //Guard for column is full and number not in ranged of 0-6
                 do {
                     try {
                         Exception = false;
@@ -43,8 +43,8 @@ public class MyGame {
                     }
 
                 } while (Exception == true);
-
-            } while (myGame.isFull() == false && myGame.isWinner() == false);
+                //Repeat as long as the board is not full and there is no winner
+            } while (myGame.isFull() == false && myGame.isWinner() == false); 
 
             myGame.printBoard();
 
@@ -59,16 +59,17 @@ public class MyGame {
             do {
                 System.out.print("Would you like to play again?(Y/N): ");
 
-                Loop = input.nextLine();
+                answer = input.nextLine();
                 entry = 0;
 
-                if (Loop.equalsIgnoreCase("y")) {
+                if (answer.equalsIgnoreCase("y")) {
                     myGame.clearBoard();
 
                     Repeat = true;
 
-                } else if (Loop.equalsIgnoreCase("n")) {
-                    System.out.println("Thank you for playing Connect Four" + ", BYE :D ");
+                } else if (answer.equalsIgnoreCase("n")) {
+                    System.out.println("\n.*•.¸¸¸.•*Thank you for playing Connect Four!¨*•.¸¸¸.•*.\n" + 
+                                                 "\t\t\tGood Bye!");
                 } else {
                     System.out.println("Please enter Y or N!");
                     entry = 1;
@@ -76,6 +77,6 @@ public class MyGame {
 
             } while (entry == 1);
 
-        } while (Repeat == true);
+        } while (Repeat == true); 
     }
 }
